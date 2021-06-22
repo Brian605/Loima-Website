@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Loima Students Association</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/app_icon.jpg" rel="icon">
+  <link href="assets/img/app_icon.jpg" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="assets/js/nav.js"></script>
+<script>
+  if(JSON.parse(sessionStorage.getItem("user"))==null || JSON.parse(sessionStorage.getItem("user"))==undefined ){
+   goToLogin();
+  }
+  
+</script>
+</head>
+
+<body style="background-image: url('assets/img/favicon.jpeg'); background-size: cover; background-position: top center;opacity: 70%;">
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column" style="opacity:70%">
+
+      <div class="profile">
+          <a href="profile.html"><img src="assets/img/default_avatar.png" id="img-circle" alt="" class="img-fluid rounded-circle"></a>
+          <h1 class="text-warning"><a href="profile.html" id="userName"> You are Viewing This Page as a guest</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <ul>
+          <li class="active"><a href="bursary.html"><i class="bx bx-book-content text-success"></i> <span >Bursaries</span></a></li>
+            <li><a href="index.html"><i class="bx bx-home text-success"></i> <span class="text-warning">Home</span></a></li>
+            <li><a href="about.html"><i class="bx bx-info-circle text-success"></i> <span class="text-warning">About</span></a></li>
+          <li><a href="login.html"><i class="bx bx-user text-success"></i> <span class="text-warning">Login/Register</span></a></li>
+          <li onclick="logoutUser();"><a href="#"><i class="bx bx-power-off text-success"></i> <span class="text-warning">Log Out</span></a></li><li><a href="bursary.html"><i class="bx bx-book-content text-success"></i><span class="text-warning">Bursaries</span></a></li>
+          <li><a href="gallery.html"><i class="bx bx-images text-success"></i><span class="text-warning">Gallery</span></a></li>
+          <li><a href="leaders.html"><i class="icofont-cheer-leader text-success"></i><span class="text-warning">Know Your Leaders</span></a></li>
+          <li><a href="downloads.html"><i class="bx bx-download text-success"></i> <span class="text-warning">Files and Downloads</span> </a></li>
+          <li><a href="contact_us.html"><i class="bx bx-phone text-success"></i> <span class="text-warning">Contact</span> </a></li>
+        </ul>
+      </nav>
+      <!-- .nav-menu -->
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+    </div>
+  </header>
+  <!-- End Header -->
+ 
+ 
+
+  <main id="main">
+
+    <section>
+        <div class="row justify-content-center">
+  
+          <!--No Bursary Yet-->
+            <div class="card bg-dark m-3 text-white  w-100 text-center p-2" id="inactive">
+              <span class="h5 text-white"><span class="icofont-info text-warning"></span> Bursary Application Is Not Active At The Moment</span>
+            </div>
+  <div id="loader" style="position: fixed;top: 20%; z-index: 99;" class=" row m-3 w-100 text-center justify-content-center">
+            <div class="loader" ></div>
+            </div>
+           
+<button class="btn btn-success" type="button" role="button" onclick="getMyApplications();">My Applications</button>
+            
+            <div class="card bg-dark m-3 text-white  w-100 text-center" id="active">
+                <div class="card-header">
+                <h4 class="h4">Bursary Application</h4>
+                </div>
+
+<div class="card-body text-left">
+                <span class="icofont-info icofont-2x text-warning"></span> <span class="text-white">How To Apply</span>
+  <form class="form form1 m-2 p-2" method="POST" action="forms/bursary.php" enctype="multipart/form-data">
+      <div class="form-row mt-2">
+          <div class="form-group col-md-4">
+              <label for="name" class="text-white" >Your Name</label>
+              <input type="text" id="name" name="name" readonly class="form-control">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="regno" class="text-white" >Your Reg. Number</label>
+            <input type="text" id="regno" name="regno" readonly class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="phone" class="text-white" >Phone Number</label>
+            <input type="text" id="phone" name="phone" readonly class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row mt-2">
+        <div class="form-group col-md-4">
+            <label for="institution" class="text-white" >Institution</label>
+            <input type="text" id="institution" name="institution" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="year" class="text-white" >Year Of Study</label>
+          <input type="text" id="year" name="year" readonly class="form-control">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="docs" class="text-white" >Application Documents</label>
+        <input type="file" id="docs" name="docs" aria-describedby="#docsHelp" required class="form-control">
+        <small class="text-warning"  id="docsHelp">Select a zipped file with your id, fee structure and fee statements</small>
+    </div>
+    </div>
+
+    <div class="form-row mt-2">
+        <div class="form-group col-md-4">
+            <label for="ward" class="text-white" >Ward</label>
+            <input type="text" id="ward" name="ward" class="form-control" readonly>
+            </div>
+      <div class="form-group col-md-4">
+         <button type="submit" class="form-control btn btn-success">Apply</button>
+      </div>
+    </div>
+  </form>
+  
+            </div>         
+            </div>
+        </div>
+    </section>
+
+    <!--My Applications modal-->
+  <div class="modal fade bg-dark" id="bsModal" tabindex="-1" aria-hidden="true" aria-labelledby="mtitle">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable bg-dark">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mtitle">My Bursary Applications</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row no-gutters justify-content-center" id="myApplications">
+
+                
+                  
+            </div>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer bg-warning">
+    <div class="container bg-warning p-3 text-success display-5">
+      <div class="copyright bg-warning">
+        &copy; Copyright <strong><span> Loima</span></strong>
+      </div>
+      
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <script>
+    
+    if(JSON.parse(sessionStorage.getItem("user")).role=="admin" || JSON.parse(sessionStorage.getItem("user")).role=="super"){
+    document.getElementById("admin_nav").style.display="block";
+  }
+  </script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/nav.js"></script>
+
+  <script src="assets/js/blog.js"></script>
+  <script src="assets/js/bursary.js"></script>
+
+
+
+ <script>
+   getStatus();
+ </script>
+  <script>
+      const user=JSON.parse(sessionStorage.getItem("user"));
+
+      $.ajax({
+          url:"forms/get_users.php",
+          method:"post",
+          data:{"get_profile":true,
+              "regno":user.regno},
+          success:function (dat){
+              console.log(dat)
+              if (!dat.includes(null)) {
+                  document.getElementById("img-circle").src = dat;
+              }
+          }
+      })
+  </script>
+
+</body>
+
+</html>

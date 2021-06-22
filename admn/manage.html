@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Loima Students Association |Admin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/app_icon.jpg" rel="icon">
+  <link href="../assets/img/app_icon.jpg" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+<script>
+ // console.log(JSON.parse(sessionStorage.getItem("user")).role);
+  if(JSON.parse(sessionStorage.getItem("user"))==null || JSON.parse(sessionStorage.getItem("user"))==undefined){
+    window.location.replace("../login.html");
+  }
+ 
+</script>
+
+</head>
+
+<body style="background-image: url('../assets/img/favicon.jpeg'); background-size: cover; background-position: top center;opacity: 70%;">
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column" style="opacity:70%">
+
+      <div class="profile">
+        <img src="../assets/img/default_avatar.png" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-warning"><a href="#" id="userName"> You are Viewing This Page as a guest</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <ul>
+          <li class="active"><a href="manage.html"><i class="bx bx-cog text-success"></i> <span >Manage Users</span></a></li>
+          <li><a href="index.html"><i class="bx bx-home text-success"></i> <span class="text-warning">Home</span></a></li>
+          <li><a href="email.html"><i class="bx bx-mail-send text-success"></i> <span class="text-warning">Bulk Email</span></a></li>
+          <li><a href="sms.html"><i class="bx bx-message text-success"></i> <span class="text-warning">Bulk Sms</span></a></li>
+          <li><a href="files.html"><i class="bx bx-file text-success"></i> <span class="text-warning">Upload Files</span></a></li>
+          <li><a href="bursary.html"><i class="bx bx-book-content text-success"></i><span class="text-warning">Bursaries</span></a></li>
+          <li><a href="blog.html"><i class="bx bxl-blogger text-success"></i><span class="text-warning">Upload Blog Post</span></a></li>
+          <li><a href="gallery.html"><i class="bx bx-images text-success"></i> <span class="text-warning" > Upload Pictures To Gallery</span></a></li>
+          <li onclick="logoutUser();"><a href="#"><i class="bx bx-power-off text-success"></i> <span class="text-warning">Log Out</span></a></li>
+         
+        </ul>
+      </nav>
+      <!-- .nav-menu -->
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+    </div>
+  </header>
+  <!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+  <section id="" class="row w-100 justify-content-center align-items-center">
+
+    <div class="container-fluid" data-aos="fade-in">
+      <div class="card bg-dark m-2 text-white p-2 w-100 rounded">
+        <div class="card-header">
+          <h2 class="text-white card-title">Manage Users</h2>
+          <div class="row">
+            <span class="badge badge-secondary text-success m-2 p-2" onclick="activateAllAccounts();">Activate All Accounts</span> 
+            <span class="badge badge-success text-warning m-2 p-2" onclick="deleteAllUsers();">Delete All Users</span> 
+            <span class="badge badge-success text-white m-2 p-2" onclick="deactivateAllAccounts()">Deactivate All Accounts</span> 
+          
+          </div>
+           </div>
+           <div class="card-body">
+        
+    <div class="row w-100">
+      <div id="loader2" style="display:none;position: fixed ;top:20%;z-index: 99;" class="loader m-3"></div>
+
+      <table class="table table-stripped table-responsive">
+        <thead>
+          <tr>
+            <th scope="col" class="text-white">Reg Number</th>
+            <th scope="col" class="text-white">Name</th>
+            <th scope="col" class="text-white">Phone</th>
+            <th scope="col" class="text-white">Year</th>
+            <th scope="col" class="text-white">Account Status</th> 
+            <th scope="col" class="text-white">Privilege</th>
+            <th scope="col" class="text-white">Action</th>
+          </tr>
+        </thead>
+        <tbody id="usersTable">
+         
+        </tbody>
+      </table>
+    </div>
+    
+    </div>
+        
+  
+      </div>
+
+
+  
+
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer bg-warning">
+    <div class="container bg-warning p-3 text-success display-5">
+      <div class="copyright bg-warning">
+        &copy; Copyright <strong><span> Loima</span></strong>
+      </div>
+      
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../assets/vendor/counterup/counterup.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/venobox/venobox.min.js"></script>
+  <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../assets/vendor/typed.js/typed.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+  <!-- Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/nav.js"></script>
+ <script>
+   getManageUsers();
+   if(!JSON.parse(sessionStorage.getItem("user")).role=="admin" || !JSON.parse(sessionStorage.getItem("user")).role=="super"){
+   goToLoginFromAdmin();
+  }
+ </script>
+
+</body>
+
+</html>
