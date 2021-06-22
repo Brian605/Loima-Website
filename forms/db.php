@@ -1,9 +1,9 @@
 <?php
 
 $server='localhost';
-$user='themarke_Returno';
-$password='Brian605ret0';
-$database='themarke_data';
+$user='root';
+$password='';
+$database='Loima';
 
 //connect
 $con=new mysqli($server,$user,$password );
